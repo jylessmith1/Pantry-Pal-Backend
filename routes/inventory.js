@@ -11,3 +11,5 @@ router.post('/', async (req, res) => {
         res.status(500).json({ message: 'Error adding inventory item', error });
       }
     });
+
+    module.exports = router;
