@@ -1,4 +1,5 @@
 require('dotenv').config()
+
 module.exports = {
 
 
@@ -22,5 +23,7 @@ module.exports = {
     "database": process.env.DATABASE_NAME,
     "host": process.env.DATABASE_HOST,
     "dialect": "postgres"
+
   }
 }
+
