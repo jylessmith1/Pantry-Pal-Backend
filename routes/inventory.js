@@ -36,4 +36,55 @@ router.get('/', async (req, res) => {
         }
     })
 
+    router.delete('/:id', async (req, res) => {
+        try {
+          const { id } = req.params;
+          const deletedItem = await Inventory.destroy({
+            where: {
+              id: id
+            }
+          });
+      
+          if (deletedItem === 0) {
+            return res.status(404).json({ message: 'Inventory item not found' });
+          }
+      
+          res.status(200).json({ message: 'Inventory item deleted successfully' });
+        } catch (error) {
+          res.status(500).json({ message: 'Error deleting Inventory item', error });
+        }
+      });
+
+      router.put('/:id', async (req, res) => {
+        try {
+          const { id } = req.params;
+          const { item, quantity, quantity_metric, is_perishable, image } = req.body;
+      
+          const [updatedRowsCount] = await Inventory.update(
+            {
+              item,
+              quantity,
+              quantity_metric,
+              is_perishable,
+              image
+            },
+            {
+              where: {
+                id: id
+              }
+            }
+          );
+      
+          if (updatedRowsCount === 0) {
+            return res.status(404).json({ message: 'Inventory item not found' });
+          }
+      
+          res.status(200).json({ message: 'Inventory item updated successfully' });
+        } catch (error) {
+          res.status(500).json({ message: 'Error updating Inventory item', error });
+        }
+      });
+      
+      
+
     module.exports = router;
