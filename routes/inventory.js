@@ -6,13 +6,14 @@ const { Inventory } = require('../models');
 router.post('/', async (req, res) => {
     try {
 
-        const {item, quantity, quantity_metric, is_perishable, image} = req.body;
+        const {item, quantity, quantity_metric, is_perishable, image, item_date} = req.body;
         const newItem = await Inventory.create({
             item,
             quantity,
             quantity_metric,
             is_perishable,
-            image
+            image,
+            item_date
             });
         res.status(201).json(newItem);
       } catch (error) {

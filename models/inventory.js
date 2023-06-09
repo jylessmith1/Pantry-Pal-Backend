@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
     quantity: DataTypes.INTEGER,
     quantity_metric: DataTypes.STRING,
     is_perishable: DataTypes.BOOLEAN,
-    image: DataTypes.STRING
+    image: DataTypes.STRING,
+    item_date: DataTypes.BIGINT
   }, {
     sequelize,
     modelName: 'Inventory',
