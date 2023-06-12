@@ -5,15 +5,15 @@ const { Inventory } = require('../models');
 
 router.post('/', async (req, res) => {
     try {
-
-        const {item, quantity, quantity_metric, is_perishable, image, item_date} = req.body;
+        const timestamp = new Date().getTime();
+        const {item, quantity, quantity_metric, is_perishable, image} = req.body;
         const newItem = await Inventory.create({
             item,
             quantity,
             quantity_metric,
             is_perishable,
             image,
-            item_date
+            item_date: timestamp //Use the timestamp value for the item_date field
             });
         res.status(201).json(newItem);
       } catch (error) {
