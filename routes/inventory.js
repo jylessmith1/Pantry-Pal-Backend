@@ -37,9 +37,9 @@ router.get('/', async (req, res) => {
         }
     })
 
-    router.delete('/:id', async (req, res) => {
+    router.delete('/', async (req, res) => {
         try {
-          const { id } = req.params;
+          const { id } = req.body;
           const deletedItem = await Inventory.destroy({
             where: {
               id: id
@@ -56,9 +56,9 @@ router.get('/', async (req, res) => {
         }
       });
 
-      router.put('/:id', async (req, res) => {
+      router.put('/', async (req, res) => {
         try {
-          const { id } = req.params;
+          const { id } = req.body;
           const { item, quantity, quantity_metric, is_perishable, image } = req.body;
       
           const [updatedRowsCount] = await Inventory.update(
@@ -67,7 +67,8 @@ router.get('/', async (req, res) => {
               quantity,
               quantity_metric,
               is_perishable,
-              image
+              image,
+              item_date: Date.now(),
             },
             {
               where: {
