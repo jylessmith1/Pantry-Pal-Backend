@@ -60,9 +60,9 @@ router.put('/:id', async (req, res) => {
     }
   });
 
-  router.delete('/:id', async (req, res) => {
+  router.delete('/', async (req, res) => {
     try {
-      const { id } = req.params;
+      const { id } = req.body;
       const deletedItem = await shopping_list.destroy({
         where: {
           id: id
